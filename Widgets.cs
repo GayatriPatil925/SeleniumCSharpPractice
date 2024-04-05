@@ -274,6 +274,40 @@ namespace DemoQA
             MH.SelectByText("Black");
 
         }
+
+        [Test]
+        [Order(7)]
+        public void Tabs()
+        {
+            IList<IWebElement> tabList = driver.FindElements(By.XPath("//a[@role='tab']"));
+            foreach(IWebElement tab in tabList)
+            {
+                string tabName = tab.Text.ToLower();
+                js.ExecuteScript("arguments[0].scrollIntoView(true);", tab);
+                try
+                {
+                    if (driver.FindElement(By.XPath($"//a[not(contains(@class,'disabled')) and text()='{tab.Text}']")).Displayed)
+                    {
+                        try
+                        {
+                            if (driver.FindElement(By.XPath($"//a[contains(@class,'active') and text()='{tab.Text}']")).Displayed)
+                            {
+                                Console.WriteLine(tab.Text + " : " + driver.FindElement(By.XPath($"//div[@id='demo-tabpane-{tabName}']/p")).Text);
+                            }
+                        }
+                        catch
+                        {
+                            tab.Click();
+                            Console.WriteLine(tab.Text + " : " + driver.FindElement(By.XPath($"//div[@id='demo-tabpane-{tabName}']/p")).Text);
+                        }
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine($"{tab.Text} is disabled and no action needed on it.");
+                }
+            }
+        }
     }
 }
 
