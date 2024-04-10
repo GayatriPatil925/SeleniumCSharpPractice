@@ -61,10 +61,10 @@ namespace Sel1
             Assert.AreEqual(TB, TB1);
 
             //To assign value
-            driver.Value.FindElement(By.XPath("//input[@id='userName']")).SendKeys("Girish Gaikwad");
+            driver.Value.FindElement(By.XPath("//input[@id='userName']")).SendKeys("XYZ");
             driver.Value.FindElement(By.XPath("//input[@id='userEmail']")).SendKeys("glitch1997@gmail.com");
-            driver.Value.FindElement(By.XPath("//textarea[@id='currentAddress']")).SendKeys("LTIMindtree");
-            driver.Value.FindElement(By.XPath("//textarea[@id='permanentAddress']")).SendKeys("Pimpri-Chinchwad");
+            driver.Value.FindElement(By.XPath("//textarea[@id='currentAddress']")).SendKeys("ABC");
+            driver.Value.FindElement(By.XPath("//textarea[@id='permanentAddress']")).SendKeys("Pune");
             driver.Value.FindElement(By.Id("submit")).Click();
 
             //To check values
